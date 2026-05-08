@@ -735,6 +735,8 @@ class EditorState {
         if (!mapEquals(op.attributes, op.oldAttributes)) {
           document.update(op.path, op.attributes);
         }
+      } else if (op is UpdateNodeTypeOperation) {
+        document.updateNodeType(op.path, op.type, op.attributes);
       } else if (op is DeleteOperation) {
         document.delete(op.path, op.nodes.length);
       } else if (op is UpdateTextOperation) {
@@ -763,6 +765,8 @@ class EditorState {
             );
           }
         }
+      } else if (op is UpdateNodeTypeOperation) {
+        document.updateNodeType(op.path, op.type, op.attributes);
       } else if (op is UpdateOperation) {
         document.update(op.path, op.attributes);
       } else if (op is DeleteOperation) {
